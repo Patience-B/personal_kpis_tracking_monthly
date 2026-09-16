@@ -46,6 +46,6 @@ Open `data.js` and find the month you want to update in the `MONTHS` array. Fill
 2. Go to **Settings → Pages**
 3. Under *Source*, select **Deploy from a branch**
 4. Choose `main` and `/ (root)`, then click **Save**
-5. Your dashboard will be live at `https://<your-username>.github.io/<repo-name>/`
+5. Your dashboard will be live at `https://htmlpreview.github.io/?https://raw.githubusercontent.com/patience-b/your-repo-name/main/index.html`
 Updates go live within a minute of pushing changes to `data.js`.
  

@@ -1,28 +1,47 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>2026 Personal KPIs</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     :root {
-      --bg:        #0f1117;
-      --surface:   #181c27;
-      --surface2:  #1f2435;
-      --border:    #2a2f42;
-      --text:      #e4e8f0;
-      --muted:     #7a82a0;
-      --steps:     #4ade9a;
-      --screen:    #f87171;
-      --verses:    #a78bfa;
-      --sand:      #60a5fa;
-      --hit:       #4ade9a;
-      --miss:      #f87171;
-      --progress:  #fbbf24;
+      --bg: #ffffff;
+      --surface: #ffffff;
+      --surface-soft: #f8fafc;
+      --surface-hover: #f5f7fa;
+
+      --border: #e6e9ee;
+      --border-light: #eef1f4;
+
+      --text: #172033;
+      --text-dark: #101828;
+      --muted: #667085;
+      --muted-light: #98a2b3;
+
+      --steps: #16a673;
+      --screen: #e05252;
+      --verses: #7557c7;
+      --sand: #3d82c4;
+
+      --hit: #16a673;
+      --miss: #e05252;
+      --progress: #d89b18;
+
+      --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.04);
+      --shadow-md: 0 4px 12px rgba(16, 24, 40, 0.06);
     }
 
     body {
@@ -33,9 +52,13 @@
       padding: 32px 24px 64px;
     }
 
+    /* ─────────────────────────────
+       Header
+    ───────────────────────────── */
+
     header {
       max-width: 1100px;
-      margin: 0 auto 40px;
+      margin: 0 auto 32px;
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
@@ -46,53 +69,58 @@
     .header-left h1 {
       font-size: 1.7rem;
       font-weight: 600;
-      letter-spacing: -0.02em;
+      color: var(--text-dark);
+      letter-spacing: -0.025em;
     }
 
     .header-left p {
       color: var(--muted);
-      font-size: 0.85rem;
-      margin-top: 4px;
+      font-size: 0.84rem;
+      margin-top: 5px;
     }
 
     .year-badge {
       font-family: 'DM Mono', monospace;
-      font-size: 2.6rem;
+      font-size: 2.4rem;
       font-weight: 500;
-      color: var(--muted);
-      opacity: 0.35;
+      color: #d0d5dd;
       line-height: 1;
+      letter-spacing: -0.04em;
     }
 
-    /* ── Summary strip ── */
+    /* ─────────────────────────────
+       Summary cards
+    ───────────────────────────── */
+
     .summary-strip {
       max-width: 1100px;
-      margin: 0 auto 40px;
+      margin: 0 auto 38px;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
+      gap: 14px;
     }
 
     .summary-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 10px;
+      border-radius: 12px;
       padding: 18px 20px;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
     }
 
-    .summary-card .metric-dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      display: inline-block;
-      margin-right: 6px;
+    .summary-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-1px);
     }
 
     .summary-card .label {
-      font-size: 0.78rem;
+      font-size: 0.77rem;
       color: var(--muted);
-      margin-bottom: 10px;
+      margin-bottom: 11px;
       display: flex;
       align-items: center;
+      font-weight: 500;
     }
 
     .summary-card .value {
@@ -100,21 +128,39 @@
       font-size: 1.8rem;
       font-weight: 500;
       line-height: 1;
+      letter-spacing: -0.03em;
     }
 
     .summary-card .sub {
-      font-size: 0.78rem;
-      color: var(--muted);
-      margin-top: 6px;
+      font-size: 0.74rem;
+      color: var(--muted-light);
+      margin-top: 7px;
     }
 
-    /* ── Month grid ── */
+    /* ─────────────────────────────
+       Section
+    ───────────────────────────── */
+
+    .section-title {
+      max-width: 1100px;
+      margin: 0 auto 14px;
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    /* ─────────────────────────────
+       Month grid
+    ───────────────────────────── */
+
     .months-grid {
       max-width: 1100px;
       margin: 0 auto;
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 16px;
+      gap: 14px;
     }
 
     .month-card {
@@ -124,79 +170,117 @@
       padding: 20px;
       position: relative;
       overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition:
+        box-shadow 0.2s ease,
+        transform 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    .month-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-1px);
     }
 
     .month-card.in-progress {
-      border-color: var(--progress);
-      box-shadow: 0 0 0 1px var(--progress) inset, 0 0 20px -8px var(--progress);
+      border-color: #e4c36a;
+      box-shadow:
+        0 0 0 1px rgba(216, 155, 24, 0.08),
+        var(--shadow-sm);
     }
 
     .month-card.pending {
-      opacity: 0.38;
+      background: #fafbfc;
+      opacity: 0.62;
     }
+
+    /* ─────────────────────────────
+       Month header
+    ───────────────────────────── */
 
     .month-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 18px;
+      margin-bottom: 20px;
     }
 
     .month-name {
       font-family: 'DM Mono', monospace;
-      font-size: 1.05rem;
+      font-size: 0.98rem;
       font-weight: 500;
-      letter-spacing: 0.04em;
+      color: var(--text-dark);
+      letter-spacing: 0.03em;
     }
 
     .status-pill {
-      font-size: 0.68rem;
-      font-weight: 500;
-      padding: 2px 8px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: 4px 9px;
       border-radius: 100px;
       letter-spacing: 0.04em;
       text-transform: uppercase;
     }
 
-    .status-pill.complete   { background: rgba(74,222,154,0.12); color: var(--hit); }
-    .status-pill.in_progress{ background: rgba(251,191,36,0.15); color: var(--progress); }
-    .status-pill.pending    { background: rgba(122,130,160,0.12); color: var(--muted); }
+    .status-pill.complete {
+      background: #e9f8f2;
+      color: var(--hit);
+    }
 
-    /* ── KPI rows ── */
+    .status-pill.in_progress {
+      background: #fff7df;
+      color: var(--progress);
+    }
+
+    .status-pill.pending {
+      background: #f1f3f5;
+      color: var(--muted);
+    }
+
+    /* ─────────────────────────────
+       KPI rows
+    ───────────────────────────── */
+
     .kpi-row {
-      margin-bottom: 14px;
+      margin-bottom: 16px;
+    }
+
+    .kpi-row:last-child {
+      margin-bottom: 0;
     }
 
     .kpi-top {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      margin-bottom: 6px;
+      margin-bottom: 7px;
     }
 
     .kpi-name {
-      font-size: 0.78rem;
+      font-size: 0.77rem;
       color: var(--muted);
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
+      font-weight: 500;
     }
 
     .kpi-name .dot {
-      width: 6px; height: 6px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
       flex-shrink: 0;
     }
 
     .kpi-pct {
       font-family: 'DM Mono', monospace;
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       font-weight: 500;
     }
 
     .kpi-bar-track {
-      height: 5px;
-      background: var(--surface2);
+      height: 6px;
+      background: #eef1f4;
       border-radius: 100px;
       overflow: hidden;
     }
@@ -204,26 +288,32 @@
     .kpi-bar-fill {
       height: 100%;
       border-radius: 100px;
-      transition: width 0.6s cubic-bezier(.4,0,.2,1);
+      transition: width 0.6s cubic-bezier(.4, 0, .2, 1);
     }
 
     .kpi-raw {
-      font-size: 0.72rem;
-      color: var(--muted);
-      margin-top: 4px;
+      font-size: 0.69rem;
+      color: var(--muted-light);
+      margin-top: 5px;
       font-family: 'DM Mono', monospace;
     }
 
     .kpi-null {
-      height: 5px;
-      background: var(--surface2);
+      height: 6px;
+      background: #eef1f4;
       border-radius: 100px;
     }
 
-    /* ── Legend ── */
+    /* ─────────────────────────────
+       Legend
+    ───────────────────────────── */
+
     .legend {
       max-width: 1100px;
-      margin: 32px auto 0;
+      margin: 28px auto 0;
+      padding-top: 18px;
+      border-top: 1px solid var(--border-light);
+
       display: flex;
       gap: 20px;
       flex-wrap: wrap;
@@ -233,240 +323,235 @@
       display: flex;
       align-items: center;
       gap: 6px;
-      font-size: 0.78rem;
+      font-size: 0.74rem;
       color: var(--muted);
     }
 
     .legend-dot {
-      width: 8px; height: 8px;
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
     }
 
-    /* ── Section title ── */
-    .section-title {
-      max-width: 1100px;
-      margin: 0 auto 16px;
-      font-size: 0.8rem;
-      color: var(--muted);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+    /* ─────────────────────────────
+       Responsive
+    ───────────────────────────── */
+
+    @media (max-width: 800px) {
+      .summary-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
-    .section-gap { max-width: 1100px; margin: 0 auto; height: 1px; background: var(--border); margin-bottom: 32px; }
-
     @media (max-width: 640px) {
-      .summary-strip { grid-template-columns: 1fr 1fr; }
-      header { flex-direction: column; align-items: flex-start; gap: 8px; }
-      .year-badge { font-size: 1.8rem; }
+      body {
+        padding: 24px 16px 48px;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .year-badge {
+        font-size: 1.8rem;
+      }
+
+      .summary-strip {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .summary-card {
+        padding: 15px;
+      }
+
+      .summary-card .value {
+        font-size: 1.5rem;
+      }
+
+      .months-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
+
 <body>
 
-<header>
-  <div class="header-left">
-    <h1>Personal KPIs</h1>
-    <p>Daily habits tracked monthly · goals shown as % achieved</p>
-  </div>
-  <div class="year-badge">2026</div>
-</header>
+  <header>
+    <div class="header-left">
+      <h1>Personal KPIs</h1>
+      <p>Daily habits tracked monthly · goals shown as % achieved</p>
+    </div>
 
-<div class="summary-strip" id="summary-strip"></div>
-
-<div class="section-title">Month by month</div>
-<div class="months-grid" id="months-grid"></div>
+    <div class="year-badge">2026</div>
+  </header>
 
 
+  <!-- Summary -->
+  <div class="summary-strip" id="summary-strip"></div>
 
-<script src="data.js"></script>
-<script>
-  // ── helpers ──────────────────────────────────────────────
-  const pct = (v, goal) => Math.round((v / goal) * 100);
 
-  // Screen time: "goal" is a max; lower actual = better.
-  // Score = 1 - (actual / cap), clamped 0–100.
-  // E.g. actual 60 min vs 120 cap → 50% remaining = 100% goal met if ≤120.
-  // We display how much UNDER the limit they are.
-  const screenScore = (actual, cap) => {
-    if (actual === null) return null;
-    const raw = ((cap - actual) / cap) * 100;
-    return Math.max(0, Math.min(200, Math.round(raw + 100))); // shift so "at goal" = 100%
-    // simpler: % of cap used (lower is better → show inversion)
-  };
+  <!-- Monthly breakdown -->
+  <div class="section-title">Month by month</div>
 
-  // Better simple version: score = cap/actual clamped to 200%.
-  // 60/120 = 50% used → that's a 100% win; invert: show (cap/actual)*100 capped at 200.
-  const screenPct = (actual, cap) => {
-    if (actual === null) return null;
-    return Math.min(200, Math.round((cap / actual) * 100));
-  };
+  <div class="months-grid" id="months-grid"></div>
 
-  const fmtMin = (mins) => {
-    if (mins === null) return '—';
-    const h = Math.floor(mins / 60);
-    const m = mins % 60;
-    return `${h}h ${m.toString().padStart(2,'0')}m`;
-  };
 
-  const fmtSteps = (n) => n === null ? '—' : n.toLocaleString();
+  <script src="data.js"></script>
 
-  // colour based on score
-  const scoreColor = (score) => {
-    if (score === null) return 'var(--muted)';
-    if (score >= 90) return 'var(--hit)';
-    if (score >= 60) return 'var(--progress)';
-    return 'var(--miss)';
-  };
+  <script>
 
-  const barWidth = (score) => score === null ? 0 : Math.min(100, score);
+    // ─────────────────────────────────────────────
+    // Helpers
+    // ─────────────────────────────────────────────
 
-  // ── build summary cards ──────────────────────────────────
-  function buildSummary() {
-    const complete = MONTHS.filter(m => m.status === 'complete' || m.status === 'in_progress');
+    const pct = (value, goal) => {
+      if (value === null || goal === 0) return null;
+      return Math.round((value / goal) * 100);
+    };
 
-    const avgStepsScore = Math.round(
-      complete.filter(m => m.steps !== null)
-              .reduce((s, m) => s + pct(m.steps, m.goal_steps), 0) /
-      complete.filter(m => m.steps !== null).length
-    );
 
-    const avgScreenScore = Math.round(
-      complete.filter(m => m.screen !== null)
-              .reduce((s, m) => s + screenPct(m.screen, m.goal_screen), 0) /
-      complete.filter(m => m.screen !== null).length
-    );
+    // Screen time:
+    // Lower actual screen time is better.
+    // 120 minutes actual against a 120-minute cap = 100%.
+    // 60 minutes actual = 200%.
+    const screenPct = (actual, cap) => {
+      if (actual === null || actual === 0 || cap === 0) return null;
 
-    const avgVersesScore = Math.round(
-      complete.filter(m => m.verses !== null)
-              .reduce((s, m) => s + pct(m.verses, m.goal_verses), 0) /
-      complete.filter(m => m.verses !== null).length
-    );
+      return Math.min(
+        200,
+        Math.round((cap / actual) * 100)
+      );
+    };
 
-    const sandMonths = complete.filter(m => m.sand !== null);
-    const avgSandScore = sandMonths.length
-      ? Math.round(sandMonths.reduce((s, m) => s + pct(m.sand, m.goal_sand), 0) / sandMonths.length)
-      : null;
 
-    const metrics = [
-      { label: 'Avg Steps', score: avgStepsScore, color: 'var(--steps)', sub: 'goal: 10,000/day' },
-      { label: 'Screen Time', score: avgScreenScore, color: 'var(--screen)', sub: 'goal: ≤2 hrs/day' },
-      { label: 'Bible Verses', score: avgVersesScore, color: 'var(--verses)', sub: 'monthly target' },
-      { label: 'Sand Hours', score: avgSandScore, color: 'var(--sand)', sub: 'goal: 8 hrs/day' },
-    ];
+    const fmtMin = (mins) => {
+      if (mins === null) return '—';
 
-    const strip = document.getElementById('summary-strip');
-    metrics.forEach(m => {
-      const c = document.createElement('div');
-      c.className = 'summary-card';
-      const displayScore = m.score === null ? '—' : `${Math.min(m.score, 999)}%`;
-      const col = m.score === null ? 'var(--muted)' : scoreColor(m.score);
-      c.innerHTML = `
-        <div class="label">${m.label}</div>
-        <div class="value" style="color:${col}">${displayScore}</div>
-        <div class="sub">${m.sub} · YTD avg</div>
-      `;
-      strip.appendChild(c);
-    });
-  }
+      const h = Math.floor(mins / 60);
+      const m = mins % 60;
 
-  // ── build month cards ────────────────────────────────────
-  function buildMonths() {
-    const grid = document.getElementById('months-grid');
+      return `${h}h ${m.toString().padStart(2, '0')}m`;
+    };
 
-    MONTHS.forEach(m => {
-      const stepsScore  = m.steps  !== null ? pct(m.steps, m.goal_steps)       : null;
-      const scrScore    = m.screen !== null ? screenPct(m.screen, m.goal_screen): null;
-      const versesScore = m.verses !== null ? pct(m.verses, m.goal_verses)      : null;
-      const sandScore   = m.sand   !== null ? pct(m.sand, m.goal_sand)          : null;
 
-      const card = document.createElement('div');
-      card.className = `month-card ${m.status}`;
+    const fmtSteps = (n) => {
+      return n === null ? '—' : n.toLocaleString();
+    };
 
-      const kpis = [
+
+    // ─────────────────────────────────────────────
+    // Score colors
+    // ─────────────────────────────────────────────
+
+    const scoreColor = (score) => {
+
+      if (score === null) {
+        return 'var(--muted)';
+      }
+
+      if (score >= 90) {
+        return 'var(--hit)';
+      }
+
+      if (score >= 60) {
+        return 'var(--progress)';
+      }
+
+      return 'var(--miss)';
+    };
+
+
+    const barWidth = (score) => {
+      if (score === null) return 0;
+
+      return Math.min(100, score);
+    };
+
+
+    // ─────────────────────────────────────────────
+    // Summary cards
+    // ─────────────────────────────────────────────
+
+    function buildSummary() {
+
+      const complete = MONTHS.filter(
+        m => m.status === 'complete' ||
+             m.status === 'in_progress'
+      );
+
+
+      const stepsMonths = complete.filter(
+        m => m.steps !== null
+      );
+
+      const avgStepsScore = stepsMonths.length
+        ? Math.round(
+            stepsMonths.reduce(
+              (sum, m) => sum + pct(m.steps, m.goal_steps),
+              0
+            ) / stepsMonths.length
+          )
+        : null;
+
+
+      const screenMonths = complete.filter(
+        m => m.screen !== null
+      );
+
+      const avgScreenScore = screenMonths.length
+        ? Math.round(
+            screenMonths.reduce(
+              (sum, m) => sum + screenPct(m.screen, m.goal_screen),
+              0
+            ) / screenMonths.length
+          )
+        : null;
+
+
+      const verseMonths = complete.filter(
+        m => m.verses !== null
+      );
+
+      const avgVersesScore = verseMonths.length
+        ? Math.round(
+            verseMonths.reduce(
+              (sum, m) => sum + pct(m.verses, m.goal_verses),
+              0
+            ) / verseMonths.length
+          )
+        : null;
+
+
+      const sandMonths = complete.filter(
+        m => m.sand !== null
+      );
+
+      const avgSandScore = sandMonths.length
+        ? Math.round(
+            sandMonths.reduce(
+              (sum, m) => sum + pct(m.sand, m.goal_sand),
+              0
+            ) / sandMonths.length
+          )
+        : null;
+
+
+      const metrics = [
+
         {
-          name: 'Daily Steps',
+          label: 'Avg Steps',
+          score: avgStepsScore,
           color: 'var(--steps)',
-          score: stepsScore,
-          raw: m.steps !== null
-            ? `${fmtSteps(m.steps)} of ${fmtSteps(m.goal_steps)}`
-            : 'no data',
+          sub: 'goal: 10,000/day'
         },
+
         {
-          name: 'Screen Time',
+          label: 'Screen Time',
+          score: avgScreenScore,
           color: 'var(--screen)',
-          score: scrScore,
-          raw: m.screen !== null
-            ? `${fmtMin(m.screen)} · cap ${fmtMin(m.goal_screen)}`
-            : 'no data',
-          inverted: true,
-        },
-        {
-          name: 'Bible Verses',
-          color: 'var(--verses)',
-          score: versesScore,
-          raw: m.verses !== null
-            ? `${m.verses} of ${m.goal_verses}`
-            : 'no data',
-        },
-        {
-          name: 'Sand Hours',
-          color: 'var(--sand)',
-          score: sandScore,
-          raw: m.sand !== null
-            ? `${m.sand}h of ${m.goal_sand}h/day`
-            : 'not tracked',
-        },
-      ];
-
-      const kpiHTML = kpis.map(k => {
-        const col = scoreColor(k.score);
-        const displayPct = k.score === null
-          ? '—'
-          : k.inverted
-            ? (k.score >= 100 ? `✓ under cap` : `${Math.round((1 - k.score/100)*100 + (k.score < 100 ? 100 - k.score : 0))}% over`)
-            : `${Math.min(k.score, 999)}%`;
-
-        const pctLabel = k.score === null ? '—'
-          : k.inverted
-            ? (k.score >= 100 ? `${Math.min(k.score, 200)}%` : `${k.score}%`)
-            : `${Math.min(k.score, 999)}%`;
-
-        return `
-          <div class="kpi-row">
-            <div class="kpi-top">
-              <div class="kpi-name">
-                ${k.name}${k.inverted ? ' ↓' : ''}
-              </div>
-              <div class="kpi-pct" style="color:${k.score !== null ? col : 'var(--muted)'}">
-                ${pctLabel}
-              </div>
-            </div>
-            <div class="kpi-bar-track">
-              ${k.score !== null
-                ? `<div class="kpi-bar-fill" style="width:${barWidth(k.score)}%;background:${col}"></div>`
-                : `<div class="kpi-null"></div>`}
-            </div>
-            <div class="kpi-raw">${k.raw}</div>
-          </div>
-        `;
-      }).join('');
-
-      const statusLabel = { complete: 'Complete', in_progress: 'In progress', pending: 'Pending' }[m.status];
-
-      card.innerHTML = `
-        <div class="month-header">
-          <div class="month-name">${m.label}</div>
-          <div class="status-pill ${m.status}">${statusLabel}</div>
-        </div>
-        ${kpiHTML}
-      `;
-
-      grid.appendChild(card);
-    });
-  }
-
-  buildSummary();
-  buildMonths();
-</script>
-</body>
-</html>
+          sub:
+```

@@ -90,10 +90,10 @@ const MONTHS = [
   {
     label: "Sep",
     status: "in_progress",
-    steps:  3879,   goal_steps:  10000,
-    screen: 275,    goal_screen: 120,   // 4h35m = 275 min
-    verses: 153,    goal_verses: 150,
-    sand:   2.0,    goal_sand:   8,
+    steps:  3790,   goal_steps:  10000,
+    screen: 262,    goal_screen: 120,   // 4h35m = 275 min
+    verses: 134,    goal_verses: 150,
+    sand:   2.3,    goal_sand:   8,
   },
   {
     label: "Oct",

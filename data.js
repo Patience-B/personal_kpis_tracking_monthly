@@ -97,7 +97,7 @@ const MONTHS = [
   },
   {
     label: "Oct",
-    status: "pending",
+    status: "in_progress",
     steps:  6430,   goal_steps:  10000,
     screen: 230,   goal_screen: 120,
     verses: 176,   goal_verses: 150,

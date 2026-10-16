@@ -90,18 +90,18 @@ const MONTHS = [
   {
     label: "Sep",
     status: "in_progress",
-    steps:  3790,   goal_steps:  10000,
-    screen: 262,    goal_screen: 120,   // 4h35m = 275 min
-    verses: 134,    goal_verses: 150,
-    sand:   2.3,    goal_sand:   8,
+    steps:  4878,   goal_steps:  10000,
+    screen: 228,    goal_screen: 120,   // 3h48m = 228 min
+    verses: 124,    goal_verses: 150,
+    sand:   2.4,    goal_sand:   8,
   },
   {
     label: "Oct",
     status: "pending",
-    steps:  null,   goal_steps:  10000,
-    screen: null,   goal_screen: 120,
-    verses: null,   goal_verses: null,
-    sand:   null,   goal_sand:   8,
+    steps:  6430,   goal_steps:  10000,
+    screen: 230,   goal_screen: 120,
+    verses: 176,   goal_verses: 150,
+    sand:   3.27,   goal_sand:   8,
   },
   {
     label: "Nov",

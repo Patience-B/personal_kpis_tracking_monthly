@@ -89,7 +89,7 @@ const MONTHS = [
   },
   {
     label: "Sep",
-    status: "in_progress",
+    status: "complete",
     steps:  4878,   goal_steps:  10000,
     screen: 228,    goal_screen: 120,   // 3h48m = 228 min
     verses: 124,    goal_verses: 150,
